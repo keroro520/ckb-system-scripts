@@ -46,7 +46,7 @@ impl DataLoader for DummyDataLoader {
         cell.mem_cell_data.clone().or_else(|| {
             self.cells
                 .get(&cell.out_point)
-                .map(|(_, data)| (data.clone(), CellOutput::calc_data_hash(&data)))
+                .map(|(_, data)| (data.clone(), CellOutput::calc_data_hash(data)))
         })
     }
     // load BlockExt
