@@ -15,12 +15,12 @@ PROTOCOL_URL := https://raw.githubusercontent.com/nervosnetwork/ckb/${PROTOCOL_V
 # docker pull nervos/ckb-riscv-gnu-toolchain:bionic-20190702
 BUILDER_DOCKER := nervos/ckb-riscv-gnu-toolchain@sha256:7b168b4b109a0f741078a71b7c4dddaf1d283a5244608f7851f5714fbad273ba
 
-all: specs/cells/randao specs/cells/always
+all: specs/cells/forty specs/cells/always
 
 all-via-docker: ${PROTOCOL_HEADER}
 	docker run --rm -v `pwd`:/code ${BUILDER_DOCKER} bash -c "cd /code && make"
 
-specs/cells/randao: c/randao.c ${PROTOCOL_HEADER}
+specs/cells/forty: c/forty.c ${PROTOCOL_HEADER}
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $<
 	# $(OBJCOPY) --only-keep-debug $@ $(subst specs/cells,build,$@.debug)
 	# $(OBJCOPY) --strip-debug --strip-all $@
